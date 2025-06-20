@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GuyLand - Официальный сайт</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    @keyframes slideIn {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(0); }
+    }
+    @keyframes slideOut {
+      from { transform: translateX(0); }
+      to { transform: translateX(-100%); }
+    }
+    .menu-content {
+      transition: transform 0.3s ease-in-out;
+      transform: translateX(-100%);
+    }
+    .menu-open {
+      transform: translateX(0);
+      animation: slideIn 0.3s forwards;
+    }
+    .menu-close {
+      animation: slideOut 0.3s forwards;
+    }
+    .submenu-button {
+      background-color: #047857;
+      color: white;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      border-radius: 0.375rem;
+      display: block;
+      text-align: center;
+      transition: background-color 0.2s;
+    }
+    .submenu-button:hover {
+      background-color: #065f46;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-200 via-white to-green-100 text-gray-800 font-sans flex flex-col min-h-screen">
+
+  <!-- Навигационное меню -->
+  <div class="w-full flex justify-between items-center p-4 bg-green-700 text-white">
+    <div class="flex items-center space-x-4">
+      <button class="text-2xl md:hidden" onclick="toggleMenu()">&#9776;</button>
+      <a href="index.html" class="text-2xl font-semibold">GuyLand</a>
+    </div>
+  </div>
+
+  <!-- Содержание главной страницы -->
+  <div class="pt-12 px-4 text-center flex-1">
+    <h1 class="text-5xl font-bold mb-6 text-green-800">Добро пожаловать на GuyLand!</h1>
+    <p class="text-xl mb-4">Это ванильный сервер Minecraft.</p>
+    <p class="text-xl mb-10">Чтобы попасть на сервер, прочитайте первые 3 блока информации!</p>
+
+    <!-- Сетка с соцсетями -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+      <a href="https://t.me/GuyLand26" target="_blank" class="flex items-center space-x-4 bg-blue-100 p-4 rounded-lg hover:bg-blue-200 shadow-lg transition">
+        <img src="https://cdn.worldvectorlogo.com/logos/telegram-1.svg" alt="Telegram" class="w-6 h-6">
+        <span>Telegram</span>
+      </a>
+      <a href="https://youtube.com/@guyland1?si=3I54I33UT1kvVF38" target="_blank" class="flex items-center space-x-4 bg-red-100 p-4 rounded-lg hover:bg-red-200 shadow-lg transition">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/YouTube_full-color_icon_%282024%29.svg/120px-YouTube_full-color_icon_%282024%29.svg.png" alt="YouTube" class="w-6 h-6">
+        <span>YouTube</span>
+      </a>
+      <a href="https://www.tiktok.com/@guyland" target="_blank" class="flex items-center space-x-4 bg-black p-4 rounded-lg hover:bg-gray-800 shadow-lg transition">
+        <img src="https://cdn.worldvectorlogo.com/logos/tiktok-1.svg" alt="TikTok" class="w-6 h-6">
+        <span class="text-white">TikTok</span>
+      </a>
+      <a href="https://discord.gg/qSBK7P6BQr" target="_blank" class="flex items-center space-x-4 bg-purple-100 p-4 rounded-lg hover:bg-purple-200 shadow-lg transition">
+        <img src="https://cdn.worldvectorlogo.com/logos/discord-6.svg" alt="Discord" class="w-6 h-6">
+        <span>Discord</span>
+      </a>
+    </div>
+
+    <!-- Контактная информация -->
+    <div class="text-left max-w-3xl mx-auto bg-green-100 p-6 rounded-lg shadow">
+      <h2 class="text-2xl font-bold mb-2">Связь с администрацией</h2>
+      <p class="mb-2">По вопросам о сервере пишите в Telegram: <a href="https://t.me/kyshdza1" target="_blank" class="text-blue-600 underline">@mrkyshdza1</a></p>
+      <p>Предложения, информация о нарушении правил со стороны другого игрока или вопросы большего масштаба — в Telegram: <a href="https://t.me/alexyz888" target="_blank" class="text-blue-600 underline">@alexyz888</a></p>
+    </div>
+  </div>
+
+  <!-- Футер -->
+  <footer class="mt-auto p-6 text-center text-gray-600 text-sm">
+    © 2025 GuyLand. Все права защищены.
+  </footer>
+
+  <!-- Выдвижное меню -->
+  <div id="mobileMenu" class="menu-content fixed top-0 left-0 w-64 h-full bg-green-800 text-white z-50 p-6 hidden overflow-y-auto">
+    <div class="flex justify-end">
+      <button onclick="toggleMenu()" class="text-3xl">&times;</button>
+    </div>
+    <nav class="flex flex-col space-y-4 mt-10">
+      <a href="index.html" class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded text-center">Главная</a>
+
+      <div>
+        <button onclick="toggleSub('infoSub')" class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded w-full text-left">Информация ▼</button>
+        <div id="infoSub" class="hidden pl-4 mt-2 space-y-1">
+          <a href="osnova.html" class="submenu-button">Основная информация</a>
+          <a href="dopoln.html" class="submenu-button">Доп. информация</a>
+          <a href="komandi.html" class="submenu-button">Базовые команды</a>
+        </div>
+      </div>
+
+      <div>
+        <button onclick="toggleSub('rulesSub')" class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded w-full text-left">Конституция ▼</button>
+        <div id="rulesSub" class="hidden pl-4 mt-2 space-y-1">
+          <a href="rules_players.html" class="submenu-button">Правила игроков</a>
+          <a href="rules_admins.html" class="submenu-button">Правила администрации</a>
+          <a href="rules_punishments.html" class="submenu-button">Правила наказаний</a>
+        </div>
+      </div>
+
+      <div>
+        <button onclick="toggleSub('rolesSub')" class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded w-full text-left">Роли ▼</button>
+        <div id="rolesSub" class="hidden pl-4 mt-2 space-y-1">
+          <a href="igroki.html" class="submenu-button">Игроки</a>
+          <a href="mazhory.html" class="submenu-button">Мажоры</a>
+          <a href="adminy.html" class="submenu-button">Администрация</a>
+        </div>
+      </div>
+
+      <div>
+        <button onclick="toggleSub('mapsSub')" class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded w-full text-left">Карты ▼</button>
+        <div id="mapsSub" class="hidden pl-4 mt-2 space-y-1">
+          <a href="kontinent.html" class="submenu-button">Карта континента</a>
+          <a href="oblasti.html" class="submenu-button">Карта областей</a>
+          <a href="bluemap.html" class="submenu-button">Онлайн карта (BlueMap)</a>
+        </div>
+      </div>
+
+      <div>
+        <button onclick="toggleSub('donateSub')" class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded w-full text-left">Поддержка ▼</button>
+        <div id="donateSub" class="hidden pl-4 mt-2 space-y-1">
+          <a href="vip.html" class="submenu-button">Вип</a>
+          <a href="vipplus.html" class="submenu-button">Вип+</a>
+          <a href="goldpass.html" class="submenu-button">Золотые проходки</a>
+          <a href="gailery.html" class="submenu-button">Донат на гайлеры</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <script>
+    const menu = document.getElementById('mobileMenu');
+    let isOpen = false;
+    function toggleMenu() {
+      if (!isOpen) {
+        menu.classList.add('menu-open');
+        menu.classList.remove('menu-close');
+        menu.classList.remove('hidden');
+        isOpen = true;
+      } else {
+        menu.classList.add('menu-close');
+        menu.classList.remove('menu-open');
+        setTimeout(() => {
+          menu.style.transform = 'translateX(-100%)';
+          menu.classList.add('hidden');
+        }, 300);
+        isOpen = false;
+      }
+    }
+
+    function toggleSub(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('hidden');
+    }
+  </script>
+
+</body>
+</html>

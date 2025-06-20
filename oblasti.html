@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Карта областей - GuyLand</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    .submenu-button {
+      background-color: #047857;
+      color: white;
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+      border-radius: 0.375rem;
+      display: block;
+      text-align: center;
+      transition: background-color 0.2s;
+    }
+    .submenu-button:hover {
+      background-color: #065f46;
+    }
+  </style>
+</head>
+<body class="bg-green-50 text-gray-800 font-sans">
+
+  <!-- Шапка -->
+  <div class="w-full flex justify-between items-center p-4 bg-green-700 text-white">
+    <div class="flex items-center space-x-4">
+      <button class="text-2xl md:hidden" onclick="toggleMenu()">&#9776;</button>
+      <a href="index.html" class="text-2xl font-semibold">GuyLand</a>
+    </div>
+  </div>
+
+  <!-- Контент -->
+  <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6 mt-6 text-center">
+    <h1 class="text-3xl font-bold text-green-700 mb-4">Карта областей</h1>
+    <img
+      src="https://i.ibb.co/sdT1GxSJ/image.png"
+      alt="Карта областей"
+      class="mx-auto max-w-full max-h-[70vh] rounded-lg shadow-lg select-none"
+      draggable="false"
+    />
+  </div>
+
+  <!-- Выдвижное меню -->
+  <div id="mobileMenu" class="fixed top-0 left-0 w-64 h-full bg-green-800 text-white z-50 p-6 hidden overflow-y-auto">
+    <div class="flex justify-end">
+      <button onclick="toggleMenu()" class="text-3xl">&times;</button>
+    </div>
+    <nav class="flex flex-col space-y-4 mt-10">
+      <a href="index.html" class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded text-center">Главная</a>
+
+      <div>
+        <button onclick="toggleSub('infoSub')" class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded w-full text-left">Информация ▼</button>
+        <div id="infoSub" class="hidden pl-4 mt-2 space-y-1">
+          <a href="osnova.html" class="submenu-button">Основная информация</a>
+          <a href="dopoln.html" class="submenu-button">Доп. информация</a>
+          <a href="komandi.html" class="submenu-button">Базовые команды</a>
+        </div>
+      </div>
+
+      <div>
+        <button onclick="toggleSub('rulesSub')" class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded w-full text-left">Конституция ▼</button>
+        <div id="rulesSub" class="hidden pl-4 mt-2 space-y-1">
+          <a href="rules_players.html" class="submenu-button">Правила игроков</a>
+          <a href="rules_admins.html" class="submenu-button">Правила администрации</a>
+          <a href="rules_punishments.html" class="submenu-button">Правила наказаний</a>
+        </div>
+      </div>
+
+      <div>
+        <button onclick="toggleSub('rolesSub')" class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded w-full text-left">Роли ▼</button>
+        <div id="rolesSub" class="hidden pl-4 mt-2 space-y-1">
+          <a href="igroki.html" class="submenu-button">Игроки</a>
+          <a href="mazhory.html" class="submenu-button">Мажоры</a>
+          <a href="adminy.html" class="submenu-button">Администрация</a>
+        </div>
+      </div>
+
+      <div>
+        <button onclick="toggleSub('mapsSub')" class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded w-full text-left">Карты ▼</button>
+        <div id="mapsSub" class="hidden pl-4 mt-2 space-y-1">
+          <a href="kontinent.html" class="submenu-button">Карта континента</a>
+          <a href="oblasti.html" class="submenu-button">Карта областей</a>
+          <a href="bluemap.html" class="submenu-button">Онлайн карта (BlueMap)</a>
+        </div>
+      </div>
+
+      <div>
+        <button onclick="toggleSub('donateSub')" class="bg-green-700 hover:bg-green-600 py-2 px-4 rounded w-full text-left">Поддержка ▼</button>
+        <div id="donateSub" class="hidden pl-4 mt-2 space-y-1">
+          <a href="vip.html" class="submenu-button">Вип</a>
+          <a href="vipplus.html" class="submenu-button">Вип+</a>
+          <a href="goldpass.html" class="submenu-button">Золотые проходки</a>
+          <a href="gailery.html" class="submenu-button">Донат на гайлеры</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <script>
+    const menu = document.getElementById('mobileMenu');
+    let isOpen = false;
+    function toggleMenu() {
+      if (!isOpen) {
+        menu.classList.remove('hidden');
+        isOpen = true;
+      } else {
+        menu.classList.add('hidden');
+        isOpen = false;
+      }
+    }
+    function toggleSub(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('hidden');
+    }
+  </script>
+
+</body>
+</html>

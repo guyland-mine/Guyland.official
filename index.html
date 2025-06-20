@@ -140,11 +140,8 @@
   </div>
 
   <!-- Счётчик посещений -->
-  <div
-    id="countapi"
-    class="text-center text-green-700 font-semibold my-4"
-  >
-    Загрузка счётчика посещений...
+  <div class="text-center my-4">
+    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://guyland-mine.github.io/Guyland.official/&count_bg=%23047857&title_bg=%2300652D&icon=craftcms.svg&icon_color=%23FFFFFF&title=Посещения&edge_flat=false" alt="счётчик" class="mx-auto" />
   </div>
 
   <!-- Футер -->
@@ -272,20 +269,6 @@
       el.classList.toggle("hidden");
     }
   </script>
-
-  <script>
-    fetch("https://api.countapi.xyz/hit/guyland/visits")
-      .then((res) => res.json())
-      .then((data) => {
-        document.getElementById("countapi").textContent =
-          "Количество посещений: " + data.value;
-      })
-      .catch(() => {
-        document.getElementById("countapi").textContent =
-          "Не удалось загрузить счётчик";
-      });
-  </script>
 </body>
 </html>
 
-</html>
